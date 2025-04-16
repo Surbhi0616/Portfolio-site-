@@ -1,0 +1,25 @@
+name: Deploy Static site to github pages
+
+on:
+  push:
+    branches:
+     - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+     steps:
+     - name: checkout repository
+       uses: actions/checkout@v3
+
+     - name: steup pages
+       uses: actions/configure-pages@v3
+
+     - name: upload static files
+       uses: actions/upload-pages-artifact@v2
+       with: 
+         path: .
+
+     - name: deploy to guthub pages
+       uses: actions/deploy-pages@v2
